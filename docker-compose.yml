@@ -1,0 +1,26 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+     - "80:80"
+    volumes:
+      - ./app:/var/www/app
+  mysql:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 55555
+    volumes:
+      - ./db:/var/lib/mysql
+    ports:
+      - 3306:3306
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+  composer:
+    image: composer
+    volumes:
+      - ./app:/app
